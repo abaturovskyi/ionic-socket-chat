@@ -1,19 +1,23 @@
 import { Injectable } from '@angular/core';
-import {$WebSocket} from 'angular2-websocket/angular2-websocket'
+import { Inject } from '@angular/core';
+import { $WebSocket } from 'angular2-websocket/angular2-websocket';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class WebSocket {
+export class WebSockets {
+  private ws;
 
-  constructor(private ws: WebSocket) {}
+  constructor() {
+    this.ws = new WebSocket('ws://echo.websocket.org');
 
-  // getRepos(username) {
-  //    let repos = this.ws.get(`https://api.github.com/users/${username}/repos`);
-  //    return repos;
-  //  }
+    this.ws.onerror   = (evt) => console.log(`Error: ${evt}`);
+    this.ws.onmessage = (evt) => console.log( evt.data );
+    this.ws.onclose   = (evt) => console.log("** Closed **");
+    this.ws.onopen    = (evt) => console.log("** Openned ***");
+  }
 
-  //  getDetails(repo) {
-  //    return this.ws;
-  //  }
+  send(message: any) {
+    this.ws.send(message);
+  }
 }
 
