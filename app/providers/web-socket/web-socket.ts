@@ -11,9 +11,12 @@ export class WebSockets {
     this.ws = new WebSocket('ws://echo.websocket.org');
 
     this.ws.onerror   = (evt) => console.log(`Error: ${evt}`);
-    this.ws.onmessage = (evt) => console.log( evt.data );
     this.ws.onclose   = (evt) => console.log("** Closed **");
-    this.ws.onopen    = (evt) => console.log("** Openned ***");
+    this.ws.onopen    = (evt) => console.log("** Opened ***");
+  }
+
+  listen(callback: any) {
+    this.ws.onmessage = callback;
   }
 
   send(message: any) {
