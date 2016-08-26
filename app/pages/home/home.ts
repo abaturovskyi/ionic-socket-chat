@@ -7,17 +7,11 @@ import { WebSockets } from '../../providers/web-socket/web-socket';
   providers: [WebSockets]
 })
 export class HomePage {
-	public foundRepos;
-  public username = "aldruin";
+  public message = "aldruin";
 
-  constructor(private ws: WebSockets, 
-    private nav: NavController) {}
+  constructor(private ws: WebSockets, private nav: NavController) {}
 
-  getRepos() {
-    this.ws.send(this.username);
+  sendMessage() {
+    this.ws.send(this.message);
   }
-
-  // goToDetails(repo) {  
-  //   this.nav.push(DetailsPage, { repo: repo });
-	// }
 }

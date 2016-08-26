@@ -9,14 +9,14 @@
 <ion-content class="home">  
     <ion-list inset>
         <ion-item>
-            <ion-label>Username</ion-label>
-            <ion-input [(ngModel)]="username" type="text"></ion-input>
+            <ion-label>Message</ion-label>
+            <ion-input [(ngModel)]="message" type="text"></ion-input>
         </ion-item>
     </ion-list>
     <div padding>
-        <button block (click)="getRepos()">Search</button>
+        <button block (click)="sendMessage()">Search</button>
     </div>
-    <ion-card *ngFor="let repo of foundRepos" (click)="goToDetails(repo)">
+    <ion-card *ngFor="let repo of foundRepos" (click)="sendMessage(repo)">
         <ion-card-header>
             {{ repo.name }}
         </ion-card-header>
