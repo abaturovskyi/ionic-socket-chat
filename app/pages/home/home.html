@@ -10,11 +10,8 @@
     <!-- Chat Window -->
     <ion-scroll chat-scroll scrollY="true">
         <ion-card *ngFor="let message of chatMessages">
-            <ion-card-header>
-                Artem
-            </ion-card-header>
-            <ion-card-content>
-                {{ message }}
+            <ion-card-content class="{{message.messageClass}}">
+                <b>{{ message.username }}:</b> {{ message.message }}
             </ion-card-content>
         </ion-card>
     </ion-scroll>
@@ -30,7 +27,7 @@
                         </ion-item>   
                     </ion-col>
                     <ion-col width-20>
-                        <button block (click)="sendMessage()">Search</button>
+                        <button block (click)="sendMessage()">Send</button>
                     </ion-col>
                 </ion-row>
             </ion-grid>
