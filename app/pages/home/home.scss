@@ -3,3 +3,9 @@
 		font-size: 24px;
   }
 }
+
+ion-scroll {  
+	white-space: nowrap;  
+	height: -webkit-calc(100vh - 120px);
+	height: calc(100vh - 120px);
+}

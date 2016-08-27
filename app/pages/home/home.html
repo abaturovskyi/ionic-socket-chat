@@ -1,32 +1,39 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      GitHub API
+      Chat
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content class="home">  
-    
-    <div padding>
-        <button block (click)="sendMessage()">Search</button>
-    </div>
-    <ion-card *ngFor="let message of chatMessages">
-        <ion-card-header>
-            Artem
-        </ion-card-header>
-        <ion-card-content>
-            {{ message }}
-        </ion-card-content>
-    </ion-card>
+    <!-- Chat Window -->
+    <ion-scroll chat-scroll scrollY="true">
+        <ion-card *ngFor="let message of chatMessages">
+            <ion-card-header>
+                Artem
+            </ion-card-header>
+            <ion-card-content>
+                {{ message }}
+            </ion-card-content>
+        </ion-card>
+    </ion-scroll>
 
+    <!-- Footer with sendmessage -->
     <ion-footer>
         <ion-toolbar>
-            <ion-item>
-                <!-- <ion-label>Message</ion-label> -->
-                <ion-input [(ngModel)]="message" type="text"></ion-input>
-                <!-- <button block (click)="sendMessage()">Search</button> -->
-            </ion-item>
+            <ion-grid>
+                <ion-row wrap>
+                    <ion-col width-80>
+                        <ion-item>
+                            <ion-input [(ngModel)]="message" type="text"></ion-input>
+                        </ion-item>   
+                    </ion-col>
+                    <ion-col width-20>
+                        <button block (click)="sendMessage()">Search</button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
         </ion-toolbar>
     </ion-footer>
 </ion-content>  
