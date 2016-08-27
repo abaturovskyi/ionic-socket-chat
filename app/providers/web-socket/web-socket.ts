@@ -8,7 +8,7 @@ export class WebSockets {
   private ws;
 
   constructor() {
-    this.ws = new WebSocket('ws://echo.websocket.org');
+    this.ws = new WebSocket('ws://192.168.0.88:4080');
 
     this.ws.onerror   = (evt) => console.log(`Error: ${evt}`);
     this.ws.onclose   = (evt) => console.log("** Closed **");
