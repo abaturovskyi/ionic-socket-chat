@@ -13,14 +13,14 @@ wss.on('connection', function (connection) {
   connection.send( // Hello message
     JSON.stringify({
       t: 'm',
-      username: 'Server',
-      message: 'Hi. You are connected to the server.'
+      u: 'Server',
+      m: 'Hi. You are connected to the server.'
     }));
 
   connection.send( // Setting username
     JSON.stringify({
       t: 'c',
-      username: 'user-' + wss.clients.length
+      u: 'user-' + wss.clients.length
     }));
 });
 
