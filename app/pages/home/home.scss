@@ -4,16 +4,22 @@
   }
 
   .self {
-  	background-color: #f2fff3;
+  	// background-color: #f2fff3;
 
   	b {
   		color: #21ce29;
   	}
   }
+
+  .item-input {
+    padding-left: 0;
+    background-color: transparent;
+  }
+
+  ion-scroll {
+    white-space: nowrap;  
+    height: -webkit-calc(100vh - 120px);
+    height: calc(100vh - 120px);
+  }
 }
 
-ion-scroll {  
-	white-space: nowrap;  
-	height: -webkit-calc(100vh - 120px);
-	height: calc(100vh - 120px);
-}

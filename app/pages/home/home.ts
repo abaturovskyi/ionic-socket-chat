@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { WebSockets } from '../../providers/web-socket/web-socket';
-import { ChatScroll } from '../../components/chat-scroll/chat-scroll'
+import { ChatScroll } from '../../components/chat-scroll/chat-scroll';
+import { Storage, LocalStorage } from 'ionic-angular';
 
 @Component({
   templateUrl: 'build/pages/home/home.html',
@@ -11,10 +12,16 @@ import { ChatScroll } from '../../components/chat-scroll/chat-scroll'
 export class HomePage {
   public username;
   public message; // Message field model
-
   public chatMessages: Array<Object> = new Array(); // Main messages array
+  private localStorage;
 
   constructor(private ws: WebSockets, private nav: NavController) {
+    this.localStorage = new Storage(LocalStorage);
+
+    this.localStorage.get('username').then((username) => {
+      this.username = username;
+    });
+
     // Setting receive message callback
     this.ws.listen(e => {
       this.delegateData(e);
@@ -26,24 +33,23 @@ export class HomePage {
 
     if(data.t === 'm') { // Message type
       let message = { // Composing message
-        messageClass: (data.username === this.username)? 'self': '',
-        username: data.username, 
-        message: data.message
+        messageClass: (data.u === this.username)? 'self': '',
+        username: data.u, 
+        message: data.m
       }
 
       // Pushing message to view
       this.chatMessages.push(message);
-    } else if (data.t === 'c'){ // Connection type
-      this.username = data.username
     }
   }
 
   sendMessage() {
     let result = JSON.stringify({ // Composing message
       t: 'm',
-      username: this.username, 
-      message: this.message
+      u: this.username, 
+      m: this.message
     });
     this.ws.send(result);
+    this.message = '';
   }
 }
