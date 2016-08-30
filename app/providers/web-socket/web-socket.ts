@@ -1,26 +1,37 @@
 import { Injectable } from '@angular/core';
 import { Inject } from '@angular/core';
-import { $WebSocket } from 'angular2-websocket/angular2-websocket';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class WebSockets {
   private ws;
+  private onmessage;
 
-  constructor() {
+  constructor() {}
+
+  connect() {
     this.ws = new WebSocket('ws://52.28.9.103:4080');
 
-    this.ws.onerror   = (evt) => console.log(`Error: ${evt}`);
+    this.ws.onmessage = this.onmessage;
     this.ws.onclose   = (evt) => console.log("** Closed **");
     this.ws.onopen    = (evt) => console.log("** Opened ***");
+    
+    this.ws.onerror   = this.retry.bind(this);
   }
 
-  listen(callback: any) {
-    this.ws.onmessage = callback;
+  retry(evt) {
+    setTimeout(() => {
+      this.connect();
+    }, 3000);
+    console.log(`Error: ${evt}`);
   }
 
   send(message: any) {
     this.ws.send(message);
+  }
+
+  onMessage(callback: any) {
+    this.onmessage = callback
   }
 }
 
