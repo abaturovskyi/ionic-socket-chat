@@ -6,6 +6,58 @@
   }
 }
 
+.card-wrapper {
+  width: 100%;
+
+  ion-card {
+    margin: 5px 15px 15px 75px;
+    width: auto;
+    max-width: calc(100% - 100px);
+    display: inline-block;
+    border-radius: 10px;
+    border-top-left-radius: 0px;
+    font-size: 1.4rem;
+    box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.1);
+
+    ion-card-content {
+      background-color: #fbf8f4;
+      white-space: normal;
+      padding: 16px 20px;
+    }
+
+    .user-avatar {
+      position: absolute;
+      overflow: hidden;
+      border-radius: 50%;
+      left: 15px;
+      width: 45px;
+      box-shadow: 0 5px 25px 0 rgba(156, 195, 192, 0.6);
+    }
+
+    &.self {
+      margin: 5px 70px 15px 15px;
+      box-shadow: 0 5px 25px 0 rgba(156, 195, 192, 0.6);
+      border-top-left-radius: 10px;
+      border-top-right-radius: 0;
+      color: #fff;
+      float: right;
+
+      ion-card-content {
+        background-color: #9cc3c0;
+      }
+
+      .user-avatar {
+        right: 15px;
+        left: auto;
+      }
+    }
+  }
+
+  &:last-child ion-card {
+    margin-bottom: 25px;
+  }
+}
+
 // make keyframes that tell the start state and the end state of our object
 @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 @-moz-keyframes fadeIn    { from { opacity:0; } to { opacity:1; } }
