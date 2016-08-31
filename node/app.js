@@ -4,6 +4,10 @@ var WebSocketServer = require('ws').Server
   , wss = new WebSocketServer({ port: 4080 });
 
 wss.on('connection', function (connection) {
+
+  var clientIp = connection._socket.address().address;
+  console.log('connected: ' + clientIp); // Logging clientIp
+
   connection.on('message', function (message) {
     console.log('received: %s', message);
 
