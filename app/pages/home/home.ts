@@ -16,16 +16,22 @@ export class HomePage {
   private localStorage;
 
   constructor(private ws: WebSockets, private nav: NavController) {
+    this.getUsername();
+
+    // Setting receive message callback
+    this.ws.onMessage(e => {
+      this.delegateData(e);
+    })
+
+    this.ws.connect();
+  }
+
+  getUsername() {
     this.localStorage = new Storage(LocalStorage);
 
     this.localStorage.get('username').then((username) => {
       this.username = username;
     });
-
-    // Setting receive message callback
-    this.ws.listen(e => {
-      this.delegateData(e);
-    })
   }
 
   delegateData(e) {
@@ -44,6 +50,8 @@ export class HomePage {
   }
 
   sendMessage() {
+    if (!this.message) return;
+
     let result = JSON.stringify({ // Composing message
       t: 'm',
       u: this.username, 
