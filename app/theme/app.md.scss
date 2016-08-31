@@ -68,3 +68,16 @@ ion-content {
 	color: #5a6575;
 	font-weight: bold;
 }
+
+ion-header::after {
+	background-image: none;
+}
+
+.toolbar-background {
+	background-color: transparent;
+}
+
+.item-input {
+	padding-left: 0;
+	background-color: transparent;
+}

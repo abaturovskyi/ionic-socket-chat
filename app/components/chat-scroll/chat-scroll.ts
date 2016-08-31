@@ -3,7 +3,7 @@ import { Directive, ElementRef, AfterViewInit, AfterViewChecked } from '@angular
 @Directive({
   selector: '[chat-scroll]'
 })
-export class ChatScroll implements AfterViewInit, AfterViewChecked {
+export class ChatScroll implements AfterViewInit, AfterViewChecked { // Scroll to bottom if new message
 	private scrollHandler
 
   constructor(private element: ElementRef) {}

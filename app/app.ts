@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ionicBootstrap, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 import { LoginPage } from './pages/login/login';
-
+import { GlobalService } from './providers/global-service/global-service';
 
 @Component({
   template: '<ion-nav [root]="rootPage"></ion-nav>'
@@ -21,4 +21,4 @@ export class MyApp {
   }
 }
 
-ionicBootstrap(MyApp);
+ionicBootstrap(MyApp, [GlobalService]); // Bootstrapping Global Service for username storage
