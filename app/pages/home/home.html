@@ -9,14 +9,16 @@
 <ion-content class="home">  
     <!-- Chat Window -->
     <ion-scroll chat-scroll scrollY="true">
-        <ion-card class="{{message.messageClass}} fade-in" *ngFor="let message of chatMessages">
-            <div class="user-avatar">
-                <img src="https://api.adorable.io/avatars/90/{{ message.username }}.png">
-            </div>
-            <ion-card-content>
-                {{ message.message }}
-            </ion-card-content>
-        </ion-card>
+        <div class="card-wrapper cf" *ngFor="let message of chatMessages">
+            <ion-card class="{{message.messageClass}} fade-in" >
+                <div class="user-avatar">
+                    <img src="https://api.adorable.io/avatars/90/{{ message.username }}.png">
+                </div>
+                <ion-card-content>
+                    {{ message.message }}
+                </ion-card-content>
+            </ion-card>
+        </div>
     </ion-scroll>
 
     <!-- Footer with sendmessage -->

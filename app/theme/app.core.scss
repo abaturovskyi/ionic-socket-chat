@@ -14,51 +14,6 @@ ion-content {
 	background-color: #fbf8f4;
 }
 
-ion-card {
-  margin: 20px 15px 20px 75px;
-  width: calc(100% - 90px);
-  border-radius: 10px;
-  border-top-left-radius: 0px;
-  font-size: 1.4rem;
-  box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.1);
-
-  ion-card-content {
-		background-color: #fbf8f4;
-		white-space: normal;
-		padding: 16px 20px;
-	}
-
-	.user-avatar {
-    position: absolute;
-    overflow: hidden;
-    border-radius: 50%;
-    left: 15px;
-    width: 45px;
-    box-shadow: 0 5px 25px 0 rgba(156, 195, 192, 0.6);
-	}
-
-	&:last-child {
-		margin-bottom: 30px;
-	}
-
-	&.self {
-		margin: 20px 70px 20px 15px;
-		box-shadow: 0 5px 25px 0 rgba(156, 195, 192, 0.6);
-		border-top-left-radius: 10px;
-		border-top-right-radius: 0;
-		color: #fff;
-
-		ion-card-content {
-			background-color: #9cc3c0;
-		}
-
-		.user-avatar {
-	    right: 15px;
-	    left: auto;
-		}
-	}
-}
-
 ion-content {
 	color: #5a6575;
 	font-weight: bold;
@@ -75,4 +30,8 @@ ion-header::after {
 .item-input {
 	padding-left: 0;
 	background-color: transparent;
+}
+
+.cf {
+  overflow: auto;
 }

@@ -12,6 +12,8 @@ export class LoginPage {
   constructor(private navCtrl: NavController, private gs: GlobalService) {}
 
   saveData() {
+  	if(this.username.lenght < 1) return;
+  	
     this.gs.set('username', this.username);
   	this.navCtrl.push(HomePage);
   }
