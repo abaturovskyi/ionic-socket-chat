@@ -13,10 +13,10 @@ export class WebSockets {
     this.ws = new WebSocket('ws://52.28.9.103:4080');
 
     this.ws.onmessage = this.onmessage;
-    this.ws.onclose   = (evt) => console.log("** Closed **");
     this.ws.onopen    = (evt) => console.log("** Opened ***");
     
-    this.ws.onerror   = this.retry.bind(this);
+    this.ws.onclose   = this.retry.bind(this);
+    // this.ws.onerror   = this.retry.bind(this);
   }
 
   retry(evt) {
