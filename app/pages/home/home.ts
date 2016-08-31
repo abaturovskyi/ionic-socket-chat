@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { WebSockets } from '../../providers/web-socket/web-socket';
+import { GlobalService } from '../../providers/global-service/global-service';
 import { ChatScroll } from '../../components/chat-scroll/chat-scroll';
-import { Storage, LocalStorage } from 'ionic-angular';
 
 @Component({
   templateUrl: 'build/pages/home/home.html',
@@ -13,25 +13,20 @@ export class HomePage {
   public username;
   public message; // Message field model
   public chatMessages: Array<Object> = new Array(); // Main messages array
-  private localStorage;
 
-  constructor(private ws: WebSockets, private nav: NavController) {
+  constructor(private ws: WebSockets, private nav: NavController, private gs:GlobalService) {
     this.getUsername();
 
     // Setting receive message callback
     this.ws.onMessage(e => {
-      this.delegateData(e);
+      this.delegateData(e); // Decide how to process message
     })
 
-    this.ws.connect();
+    this.ws.connect(); // Connect WebSocket
   }
 
-  getUsername() {
-    this.localStorage = new Storage(LocalStorage);
-
-    this.localStorage.get('username').then((username) => {
-      this.username = username;
-    });
+  getUsername() { // Get username from storage
+    this.username = this.gs.get('username'); 
   }
 
   delegateData(e) {
@@ -44,8 +39,7 @@ export class HomePage {
         message: data.m
       }
 
-      // Pushing message to view
-      this.chatMessages.push(message);
+      this.chatMessages.push(message); // Pushing message to view
     }
   }
 

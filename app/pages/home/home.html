@@ -9,7 +9,7 @@
 <ion-content class="home">  
     <!-- Chat Window -->
     <ion-scroll chat-scroll scrollY="true">
-        <ion-card class="{{message.messageClass}}" *ngFor="let message of chatMessages">
+        <ion-card class="{{message.messageClass}} fade-in" *ngFor="let message of chatMessages">
             <ion-card-content>
                 {{ message.message }}
             </ion-card-content>
